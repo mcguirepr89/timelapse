@@ -1,0 +1,9 @@
+# Generate stills every minute
+* * * * * /timelapse.sh -S
+
+# Append new stills to the timelapse video every half hour
+*/30 * * * * /timelapse.sh -r
+
+# Generate a new fast timelapse 5 minutes after each timelapse update
+5 * * * * /timelapse.sh -f
+35 * * * * /timelapse.sh -f
