@@ -1,5 +1,5 @@
 docker run -d \
-  --name timelapse1 \
+  --name timelapse \
   --mount type=bind,source=$(pwd)/videos,target=/videos \
   --mount type=bind,source=$(pwd)/app,target=/app\
   --tmpfs /stills \
