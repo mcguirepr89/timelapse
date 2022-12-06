@@ -68,7 +68,7 @@ configuration (/etc/timelapse)
     A VERY simple web page to display the videos
 
 --->./webgui/style.css:
-    A VERY simply cascading style sheet to give the HTML a tiny bit of fuss
+    A VERY simple cascading style sheet to give the HTML a tiny bit of fuss
 
 -------
 systemd (/lib/systemd/system)
