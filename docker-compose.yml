@@ -19,3 +19,48 @@ services:
     tmpfs:
       - /home/${USER}/stills:${uid},${gid}
       - /home/${USER}/assembly:${uid},${gid}
+    networks:
+      - timelapse
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2.6.2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - type: bind
+        source: ./videos
+        target: /var/www/html
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - timelapse
+    depends_on: 
+      - php-fpm
+
+  php-fpm:
+    container_name: php-fpm
+    image: php:7.4-fpm
+    volumes:
+      - type: bind
+        source: ./videos
+        target: /var/www/html
+      - type: bind
+        source: ./app/timelapse.conf
+        target: /etc/timelapse/timelapse.conf
+    networks:
+      - timelapse
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
+
+networks:
+  timelapse:
+    name: timelapse
