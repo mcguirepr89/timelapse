@@ -9,6 +9,7 @@ A little tool to make timelapse videos from RTSP streams
 1. Clone this repo: `git clone https://github.com/mcguirepr89/timelapse.git`
 1. Edit `app/timelapse.conf` (as a regular user)
 1. Edit `crontab.example` if you want to customize the schedule (edit as root user)
+1. Edit `docker-compose.yml` if you want to change the ports `caddy` uses (default 80 & 443)
 1. Export your shell's environment for the build:
    (Copy and paste the following into your shell):
    ```
