@@ -48,4 +48,3 @@ See `deb_docs` for more information.
    ```
 1. Bring up and build your new docker service:
    `docker compose up -d`
-

@@ -1,6 +1,0 @@
-docker run -d \
-  --name timelapse1 \
-  --mount type=bind,source=$(pwd)/videos,target=/videos \
-  --mount type=bind,source=$(pwd)/app,target=/app\
-  --tmpfs /stills \
-  timelapse:latest
