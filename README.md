@@ -29,7 +29,7 @@ A little tool to make timelapse videos from RTSP streams
    sudo systemctl enable --now timelapse_fast.timer
    ```
 
-See `deb_docs` for more information.
+See [`deb_docs`](https://github.com/mcguirepr89/timelapse/blob/main/deb_docs) for more information.
    
 ---
 
