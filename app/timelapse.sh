@@ -79,7 +79,7 @@ while getopts "hrlfs:S" options;do
     s)  echo "Running stage $OPTARG"
         number=$OPTARG
       ;;
-    S)  ffmpeg $FFMPEG_LOGGING -y -i "$RTSP_STREAM" -frames 1 $STILLS/$(date +%F_%T).jpg
+    S)  ffmpeg $FFMPEG_LOGGING -y -rtsp_transport tcp -re -i "$RTSP_STREAM" -frames 1 $STILLS/$(date +%F_%T).jpg
         exit 0
       ;;
     \?) echo "Option not recognized"; usage; exit 1;;
