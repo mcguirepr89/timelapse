@@ -9,8 +9,8 @@
 # domain name.
 
 :80 {
-        root * /var/www/html
-        encode zstd gzip
-        file_server
-        php_fastcgi php-fpm:9000
+	root * /var/www/html
+	encode zstd gzip
+	file_server
+	php_fastcgi php-fpm:9000
 }
