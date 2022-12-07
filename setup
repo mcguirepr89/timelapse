@@ -3,3 +3,4 @@ export TZ=$(readlink -f /etc/localtime)
 export uid=$(id $(whoami) | sed "s/ /\n/g;s/($(whoami))//g" | grep uid)
 export gid=$(id $(whoami) | sed "s/ /\n/g;s/($(whoami))//g" | grep gid)
 set +x
+docker compose up -d
