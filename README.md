@@ -27,7 +27,7 @@ A little tool to make timelapse videos from RTSP streams
    1. Just run `bash setup` to do both steps above in one go
 ---
 
-## Install as a `.deb` package . . .
+## Install as a `.deb` package . . . (deprecated but working)
 1. Import the public PGP key as GPG key
    ```
    wget -O- https://apt.pmcgui.xyz/mcguirepr89@gmail.com.gpg.key \
