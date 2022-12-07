@@ -23,7 +23,7 @@ A little tool to make timelapse videos from RTSP streams
    1. Bring up and build your new docker service:
       `docker compose up -d`
       
-      OR
+      **OR**
    1. Just run `bash setup` to do both steps above in one go
 ---
 
