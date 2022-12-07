@@ -2,7 +2,7 @@
 set -e
 trap "rm -f $tmp_email" EXIT
 
-if ! source /app/timelapse.conf;then
+if ! source $HOME/app/timelapse.conf;then
   echo "
 Use /timelapse.conf-template to create an 
 /timelapse.conf file and restart the service.

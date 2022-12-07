@@ -28,6 +28,8 @@ A little tool to make timelapse videos from RTSP streams
 1. ```
    sudo systemctl enable --now timelapse_fast.timer
    ```
+
+See `deb_docs` for more information.
    
 ---
 
@@ -35,13 +37,15 @@ A little tool to make timelapse videos from RTSP streams
 
 1. Ensure docker is installed
 1. Clone this repo: `git clone https://github.com/mcguirepr89/timelapse.git`
-1. Pre-configure your container (edit the `timelapse.conf` file)
-1. Build the container: `docker build -t timelapse .`
-1. Run the container:
+1. Edit `app/timelapse.conf` (as a regular user)
+1. Edit `crontab.example` if you want to customize the schedule
+1. Export your shell's environment for the build:
+   (Copy and paste the following into your shell):
    ```
-   docker run -d \
-     --name timelapser \
-     --mount type=bind,source=$(pwd),target=/videos \
-     --tmpfs /stills \
-     timelapse:latest
+   export TZ=$(readlink -f /etc/localtime)
+   export uid=$(id $(whoami) | sed "s/ /\n/g;s/($(whoami))//g" | grep uid)
+   export gid=$(id $(whoami) | sed "s/ /\n/g;s/($(whoami))//g" | grep gid)
    ```
+1. Bring up and build your new docker service:
+   `docker compose up -d`
+

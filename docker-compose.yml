@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  timelapse:
+    build: 
+      context: .
+      args:
+        user: $USER
+        tz: $TZ
+    volumes:
+      - type: bind
+        source: ./videos
+        target: /home/${USER}/videos
+      - type: bind
+        source: ./app
+        target: /home/${USER}/app
+      - type: bind
+        source: ./crontab.example
+        target: /var/spool/cron/crontabs/${USER}
+    tmpfs:
+      - /home/${USER}/stills:${uid},${gid}
+      - /home/${USER}/assembly:${uid},${gid}
