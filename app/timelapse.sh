@@ -151,7 +151,6 @@ video  --  "
 
 stage_6() {
   echo -n "-- Removing the older videos  --  "
-
   (rm -f $ASSEMBLY/${TIMELAPSE}_tmp.mp4 \
     && echo COMPLETE) \
     || (echo "NOPE" && exit 1)
