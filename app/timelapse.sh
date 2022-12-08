@@ -101,7 +101,7 @@ stage_2() {
 
   if ls $VIDEOS/$TIMELAPSE* &>/dev/null;then
     echo -n "-- Preparing the cumulative video $(basename $FILENAME) --  "
-    (mv $VIDEOS/$TIMELAPSE*.mp4 $ASSEMBLY/$TIMELAPSE.mp4 \
+    (mv $VIDEOS/$TIMELAPSE*.mp4 $VIDEOS/$TIMELAPSE.mp4 \
       && echo COMPLETE) \
       || (echo "NOPE" && exit 1)
   else
@@ -139,11 +139,12 @@ video  --  "
 
   tmpfile=$(mktemp) || exit 100
   cat <<- EOF > $tmpfile
-	file '$ASSEMBLY/$TIMELAPSE.mp4'
+	file '$VIDEOS/$TIMELAPSE.mp4'
 	file '$ASSEMBLY/${TIMELAPSE}_tmp.mp4'
 	EOF
-  (ffmpeg $FFMPEG_LOGGING -f concat -safe 0 \
-    -i $tmpfile -c copy $FILENAME && rm -f $tmpfile \
+
+  (ffmpeg -y $FFMPEG_LOGGING -f concat -safe 0 \
+    -i $tmpfile -c copy "$VIDEOS/$TIMELAPSE.mp4" && rm -f $tmpfile \
     && echo COMPLETE) \
     || (echo "NOPE" && exit 1)
 }
@@ -151,8 +152,7 @@ video  --  "
 stage_6() {
   echo -n "-- Removing the older videos  --  "
 
-  (rm -f $ASSEMBLY/$TIMELAPSE.mp4 \
-    && rm -f $ASSEMBLY/${TIMELAPSE}_tmp.mp4 \
+  (rm -f $ASSEMBLY/${TIMELAPSE}_tmp.mp4 \
     && echo COMPLETE) \
     || (echo "NOPE" && exit 1)
 }
