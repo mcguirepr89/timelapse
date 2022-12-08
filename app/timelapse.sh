@@ -70,7 +70,7 @@ while getopts "hrlfs:S" options;do
     l)  list && exit 1
       ;;
     f)  echo -n "-- Generate FAST timelapse  --  "
-        (ffmpeg -y $FFMPEG_LOGGING -i "$(ls $VIDEOS/${TIMELAPSE}*.mp4)" \
+        (ffmpeg -y $FFMPEG_LOGGING -i "$(ls $VIDEOS/${TIMELAPSE}*.mp4 2>/dev/null)" \
           -vf  "setpts=0.05*PTS" $VIDEOS/speedyTimelapse.mp4 \
           && echo COMPLETE) \
           || (echo "NOPE" && exit 1)
