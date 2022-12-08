@@ -101,7 +101,7 @@ stage_2() {
 
   if ls $VIDEOS/$TIMELAPSE* &>/dev/null;then
     echo -n "-- Preparing the cumulative video $(basename $FILENAME) --  "
-    (mv $VIDEOS/$TIMELAPSE*.mp4 $ASSEMBLY/$TIMELAPSE.mp4 \
+    (mv $VIDEOS/$TIMELAPSE*.mp4 $VIDEOS/$TIMELAPSE.mp4 \
       && echo COMPLETE) \
       || (echo "NOPE" && exit 1)
   else
@@ -137,15 +137,19 @@ stage_5() {
   echo -n "-- Appending (concatenating) the new timelapse with the cumulative \
 video  --  "
 
-  tmpfile=$(mktemp) || exit 100
-  cat <<- EOF > $tmpfile
-	file '$ASSEMBLY/$TIMELAPSE.mp4'
-	file '$ASSEMBLY/${TIMELAPSE}_tmp.mp4'
-	EOF
-  (ffmpeg $FFMPEG_LOGGING -f concat -safe 0 \
-    -i $tmpfile -c copy $FILENAME && rm -f $tmpfile \
+#  tmpfile=$(mktemp) || exit 100
+#  cat <<- EOF > $tmpfile
+#	file '$ASSEMBLY/$TIMELAPSE.mp4'
+#	file '$ASSEMBLY/${TIMELAPSE}_tmp.mp4'
+#	EOF
+  (cat "$VIDEOS/$TIMELAPSE.mp4" "$ASSEMBLY/${TIMELAPSE}_tmp.mp4" > "$FILENAME"\
     && echo COMPLETE) \
     || (echo "NOPE" && exit 1)
+
+#  (ffmpeg $FFMPEG_LOGGING -f concat -safe 0 \
+#    -i $tmpfile -c copy $FILENAME && rm -f $tmpfile \
+#    && echo COMPLETE) \
+#    || (echo "NOPE" && exit 1)
 }
 
 stage_6() {
