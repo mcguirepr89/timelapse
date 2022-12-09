@@ -144,7 +144,8 @@ video  --  "
 	EOF
 
   (ffmpeg -y $FFMPEG_LOGGING -f concat -safe 0 \
-    -i $tmpfile -c copy "$VIDEOS/$TIMELAPSE.mp4" && rm -f $tmpfile \
+    -i $tmpfile -c copy "$FILENAME" \
+    && rm -f $tmpfile \
     && echo COMPLETE) \
     || (echo "NOPE" && exit 1)
 }
@@ -152,7 +153,8 @@ video  --  "
 stage_6() {
   echo -n "-- Removing the older videos  --  "
 
-  (rm -f $ASSEMBLY/${TIMELAPSE}_tmp.mp4 \
+  (rm -f $VIDEOS/$TIMELAPSE.mp4 \
+    rm -f $ASSEMBLY/${TIMELAPSE}_tmp.mp4 \
     && echo COMPLETE) \
     || (echo "NOPE" && exit 1)
 }
