@@ -20,29 +20,29 @@ if ($handle) {
   fclose($handle);
 }
 
-$videos = glob('./*.mp4', GLOB_BRACE);
+$videos = shell_exec("ls *.mp4 | xargs");
+$videos = explode(" ", $videos);
 ?>
+
 
 <html>
 <!DOCTYPE html>
-<head>
+<head class="p-0 m-0 h-screen">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="output.css" rel="stylesheet">
   <title><?=ucfirst($title);?> Timelapse</title>
 </head>
-<body class="bg-green-400 max-h-screen">
-  <h1 class="text-2xl text-center"><?=ucfirst($title);?> <small>(Started <?=$start_date;?>)</small></h1>
-  
-
-  <div class="container justify-items-center mx-auto grid sm:grid-cols-1 lg:grid-cols-auto pt-6 gap-8">
+<body class="bg-green-400 max-h-screen m-0 p-0">
+  <h1 class="text-2xl text-center pb-6 pt-3"><?=ucfirst($title);?> <small>(Started <?=$start_date;?>)</small></h1>
+  <div class="container justify-items-center mx-auto space-y-0 grid grid-cols-1 gap-0 grid-flow-row auto-rows-auto">
 <?php foreach($videos as $video) {?>
-    <video controls preload class="max-h-80 aspect-ratio rounded">
+    <div>
+    <video controls preload class="h-5/6 rounded-xl">
       <source src="<?=$video;?>" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+    </div>
 <?php }?>
   </div>
-
-
 </body>
 </html>
