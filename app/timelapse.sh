@@ -10,6 +10,12 @@ Use /timelapse.conf-template to create an
   exit 1
 fi
 
+STILLS="$HOME/stills"
+VIDEOS="$HOME/videos"
+ASSEMBLY="$HOME/assembly"
+FILENAME="$VIDEOS/$TIMELAPSE-start${START}end$(date +%F_%H-%M).mp4"
+
+
 # Make the $STILLS directory if it doesn't exist
 [ -d $STILLS ] || mkdir -p $STILLS
 # Make the $VIDEOS directory if it doesn't exist

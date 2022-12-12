@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   timelapse:
+    container_name: timelapse
     build: 
       context: .
       args:
@@ -24,6 +25,7 @@ services:
     restart: unless-stopped
 
   caddy:
+    container_name: caddy
     image: caddy:2.6.2-alpine
     restart: unless-stopped
     ports:
