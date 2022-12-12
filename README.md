@@ -25,36 +25,3 @@ A little tool to make timelapse videos from RTSP streams
       
       **OR**
    1. Just run `bash setup` to do both steps above in one go
----
-
-## Install as a `.deb` package . . . (deprecated but working)
-1. Import the public PGP key as GPG key
-   ```
-   wget -O- https://apt.pmcgui.xyz/mcguirepr89@gmail.com.gpg.key \
-     | gpg --dearmor \
-     | sudo tee /usr/share/keyrings/timelapse.gpg >/dev/null
-   ```
-1. Add the repo to your APT sources list
-   ```
-   echo "deb [signed-by=/usr/share/keyrings/timelapse.gpg] https://apt.pmcgui.xyz/ any-version main" \
-     | sudo tee /etc/apt/sources.list.d/timelapse.list
-   ```
-1. Update your system (to fetch the new repo) and install `timelapse`
-   ```
-   sudo apt update && sudo apt -y install timelapse
-   ```
-
-## . . . then start systemd timers (which will trigger the services)
-1. ```
-   sudo systemctl enable --now timelapse_stills.timer
-   ```
-1. ```
-   sudo systemctl enable --now timelapse.timer
-   ```
-1. ```
-   sudo systemctl enable --now timelapse_fast.timer
-   ```
-
-See [`deb_docs`](https://github.com/mcguirepr89/timelapse/blob/main/deb_docs) for more information.
-   
-
