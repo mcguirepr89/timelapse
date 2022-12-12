@@ -44,7 +44,7 @@ services:
 
   php-fpm:
     container_name: php-fpm
-    image: php:7.4-fpm
+    image: php:7.4-fpm-alpine
     volumes:
       - type: bind
         source: ./videos
