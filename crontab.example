@@ -5,6 +5,6 @@ SHELL=/bin/ash
 # Append new stills to the timelapse video every half hour
 */30 * * * * $HOME/app/timelapse.sh -r
 
-# Generate a new fast timelapse 5 minutes after each timelapse update
-5 * * * * $HOME/app/timelapse.sh -f
-35 * * * * $HOME/app/timelapse.sh -f
+# Generate a new fast timelapse 10 minutes after each timelapse update
+10 * * * * $HOME/app/timelapse.sh -f
+40 * * * * $HOME/app/timelapse.sh -f
