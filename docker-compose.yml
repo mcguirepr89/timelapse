@@ -6,7 +6,6 @@ services:
       context: .
       args:
         user: $USER
-        tz: $TZ
     volumes:
       - type: bind
         source: ./videos
@@ -17,9 +16,15 @@ services:
       - type: bind
         source: ./crontab.example
         target: /var/spool/cron/crontabs/${USER}
+      - type: bind        
+        source: /etc/localtime
+        target: /etc/localtime
+      - type: bind
+        source: /etc/timezone
+        target: /etc/timezone
     tmpfs:
-      - /home/${USER}/stills:${uid},${gid}
-      - /home/${USER}/assembly:${uid},${gid}
+      - /home/${USER}/stills
+      - /home/${USER}/assembly
     networks:
       - timelapse
     restart: unless-stopped
