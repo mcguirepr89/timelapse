@@ -16,7 +16,6 @@ A little tool to make timelapse videos from RTSP streams
    1. Export your shell's environment for the build:
       (Copy and paste the following into your shell):
       ```
-      export TZ=$(readlink -f /etc/localtime)
       export uid=$(id $(whoami) | sed "s/ /\n/g;s/($(whoami))//g" | grep uid)
       export gid=$(id $(whoami) | sed "s/ /\n/g;s/($(whoami))//g" | grep gid)
       ```
