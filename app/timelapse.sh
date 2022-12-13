@@ -22,8 +22,6 @@ FILENAME="$VIDEOS/$TIMELAPSE-start${START}end$(date +%F_%H-%M).mp4"
 [ -d $VIDEOS ] || mkdir -p $VIDEOS
 # Make the $ASSEMBLY directory if it doesn't exist
 [ -d $ASSEMBLY ] || mkdir -p $ASSEMBLY
-# Make the temp file if sending email report
-[ ! -z $MAILTO ] && tmp_email=$(mktemp)
 
 usage() {
   cat<< EOF
@@ -197,12 +195,5 @@ fi
   df -h /
   [ -z $SYSTEMD ] || echo '</pre>'
 } | tee -a $tmp_email
-
-# Send email report if $MAILTO is defined in timelapse.conf
-if [ ! -z $MAILTO ];then
-  cat $tmp_email | mail -a "Content-type: text/html" \
-    -s "$TIMELAPSE timelapse from $(hostname)" $MAILTO &&\
-    rm -f $tmp_email
-fi
 
 exit 0
