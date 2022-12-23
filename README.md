@@ -11,7 +11,7 @@ A little tool to make timelapse videos from RTSP streams
 1. Edit `crontab.example` if you want to customize the schedule (_optional_)
 1. Make `root` the owner of the crontab: `sudo chown root:root crontab.example` (**_required_**)
 1. Edit `docker-compose.yml` if you want to change the ports `caddy` uses (default 80 & 443) (_optional_)
-1. Create volume for `caddy`: `docker create volume caddy_data` (**_required_**)
+1. Create volume for `caddy`: `docker volume create caddy_data` (**_required_**)
 1. Build the containers and bring up the services:
    1. Export your shell's environment for the build: (**_required_**)
    
