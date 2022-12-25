@@ -1,4 +1,4 @@
-export uid=$(id $(whoami) | sed "s/ /\n/g;s/($(whoami))//g" | grep uid)
-export gid=$(id $(whoami) | sed "s/ /\n/g;s/($(whoami))//g" | grep gid)
+export uid=$(id -u)
+export gid=$(id -g)
 sudo chown root:root crontab.example
 docker compose up -d
