@@ -17,8 +17,8 @@ A little tool to make timelapse videos from RTSP streams
    
       (Copy and paste the following into your shell):
       ```
-      export uid=$(id $(whoami) | sed "s/ /\n/g;s/($(whoami))//g" | grep uid)
-      export gid=$(id $(whoami) | sed "s/ /\n/g;s/($(whoami))//g" | grep gid)
+      export uid=$(id -u)
+      export gid=$(id -g)
       ```
    1. Bring up and build your new docker service:
       `docker compose up -d`
